@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/presentation/pages/custom/my_clipper.dart';
 import 'package:project/presentation/pages/custom/my_clipper_base.dart';
+import 'package:project/presentation/widgets/email1.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,22 +21,7 @@ class MyApp extends StatelessWidget {
           title: Text('Screen 1'),
           backgroundColor: Colors.indigo,
         ),
-        body: Container(
-          child: Stack(
-            children: [
-              Opacity(
-                opacity: 0.5,
-                child: ClipPath(
-                  clipper: MyClipperBase(),
-                  child: Container(
-                    color: Colors.greenAccent,
-                    height: 400,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+        body: Email1(),
       ),
     );
   }
