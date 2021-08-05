@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/presentation/bloc/email_bloc.dart';
+import 'package:project/bloc/email_bloc.dart';
 
 class Email1 extends StatelessWidget {
   final EmailBloc _emailBloc = EmailBloc();
@@ -12,7 +12,7 @@ class Email1 extends StatelessWidget {
           child: StreamBuilder(
             builder: (context, AsyncSnapshot<String> snapshot) {
               return TextField(
-                onChanged: (String teks) => _emailBloc.updateText(teks),
+                onChanged: (String teks) => _emailBloc.checkText(teks),
                 decoration: InputDecoration(
                   errorText: snapshot.hasError
                       ? snapshot.error.toString()
