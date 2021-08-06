@@ -40,20 +40,7 @@ class Screen1 extends StatelessWidget {
               ),
             ),
             Text(s1WelcomeFuture),
-            Container(
-              margin: const EdgeInsets.all(40),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
-              child: Email1(),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                log('pressed');
-              },
-              child: Text(next),
-            )
+            Email1(),
           ],
         ),
       ),
