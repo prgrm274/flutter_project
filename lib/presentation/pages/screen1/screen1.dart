@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:project/const/strings_constants.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
-import 'package:project/presentation/widgets/email1.dart';
+import 'package:project/presentation/pages/screen1/email1.dart';
 
 class Screen1 extends StatelessWidget {
 
