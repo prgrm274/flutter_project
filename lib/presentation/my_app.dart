@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
+import 'package:project/presentation/pages/screen1/screen1.dart';
+import 'package:project/presentation/pages/screen2/row_aa1239.dart';
+import 'package:project/presentation/pages/screen2/screen2.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,7 +18,9 @@ class MyApp extends StatelessWidget {
           title: Text('Screen 1'),
           backgroundColor: Colors.indigo,
         ),
-        body: RowCircles(),
+        body: Screen1(),
+        // body: Screen2(),
+        // body: RowCircles(),
         // body: Email1(),
       ),
     );

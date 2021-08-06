@@ -1,7 +1,7 @@
 const s1Welcome = "Welcome to";
-const s1GIN = "GIN";
+const s1GIN = "GIN ";
 const s1Finans = "Finans";
-const s1WelcomeFuture = "Welcome to The Bank of The Future.";
+const s1WelcomeFuture = "Welcome to The Bank of The Future.\nManage and track your accounts on the go.";
 const s1Manage = "Manage and track your accounts on the go.";
 
 const email = "Email";

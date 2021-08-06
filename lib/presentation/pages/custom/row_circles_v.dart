@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class RowCircles extends StatelessWidget {
-  final Color color;
+class RowCirclesV extends StatelessWidget {
+  final teks;
 
-  RowCircles({required this.color});
+  RowCirclesV({this.teks});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,11 @@ class RowCircles extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _circle('1', context, color),
-              _circle('2', context, color),
-              _circle('3', context, color),
-              _circle('4', context, color),
+              _circle(teks),
+              _circle(teks),
+              _circle(teks),
+              _circle(teks),
+              _circle(teks),
             ],
           ),
         ],
@@ -28,26 +29,28 @@ class RowCircles extends StatelessWidget {
     );
   }
 
-  Widget _circle(teks, context, color){
+  Widget _circle(teks){
     return Container(
-      width: MediaQuery.of(context).size.width/7,
       margin: const EdgeInsets.all(15.0),
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(3.0),
       decoration: BoxDecoration(
-          color: color,
+          color: Colors.white,
           border: Border.all(color: Colors.black26),
           shape: BoxShape.circle
       ),
-      child: Text(teks, textAlign: TextAlign.center,),
+      child: Text(teks),
     );
   }
 
   Widget _lineBelowCircles(context){
     return Container(
-      color: Colors.black45,
-      height: 5,
+      height: 4,
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        border: Border.all(color: Colors.black26),
+        shape: BoxShape.rectangle,
+      ),
       child: Text('2'),
     );
   }
