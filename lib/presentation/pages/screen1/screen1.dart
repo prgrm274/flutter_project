@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:project/const/strings_constants.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
+import 'package:project/presentation/widgets/email1.dart';
 
 class Screen1 extends StatelessWidget {
 
@@ -43,13 +44,9 @@ class Screen1 extends StatelessWidget {
               margin: const EdgeInsets.all(40),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.grey,
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: 'e-mail'
-                ),
-              ),
+              child: Email1(),
             ),
             ElevatedButton(
               onPressed: () {

@@ -8,33 +8,29 @@ class Email1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: StreamBuilder(
-            builder: (context, AsyncSnapshot<String> snapshot) {
-              return TextField(
-                onChanged: (String teks) {
-                  if (teks.contains(r"[A-a]")) {
-                    log("A-a");
-                  } else if (teks.contains(r"[0-9]")) {
-                    log("0-9");
-                  }
-                  _emailBloc.checkText(teks);
-                },
-                // onChanged: (String teks) => _emailBloc.checkText(teks),///
-                decoration: InputDecoration(
-                  errorText: snapshot.hasError
-                      ? snapshot.error.toString()
-                      : null,
-                  hintText: 'example a@gmail.com',
-
-                ),
-              );
+    return Center(
+      child: StreamBuilder(
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          return TextField(
+            onChanged: (String teks) {
+              if (teks.contains(r"[A-a]")) {
+                log("A-a");
+              } else if (teks.contains(r"[0-9]")) {
+                log("0-9");
+              }
+              _emailBloc.checkText(teks);
             },
-            stream: _emailBloc.textStream,
-          ),
-        ),
+            // onChanged: (String teks) => _emailBloc.checkText(teks),///
+            decoration: InputDecoration(
+              errorText: snapshot.hasError
+                  ? snapshot.error.toString()
+                  : null,
+              hintText: 'example a@gmail.com',
+
+            ),
+          );
+        },
+        stream: _emailBloc.textStream,
       ),
     );
   }
