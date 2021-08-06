@@ -1,9 +1,9 @@
 import 'dart:async';
 
 class EmailBloc {
-  var _textController = StreamController<String>();
+  var _textStreamController = StreamController<String>();
 
-  Stream<String> get textStream => _textController.stream;
+  Stream<String> get textStream => _textStreamController.stream;
 
   checkText(String teks) {
     bool isEmailCorrect = RegExp(
@@ -11,13 +11,13 @@ class EmailBloc {
         .hasMatch(teks);
 
     (teks == null || teks == "")
-        ? _textController.sink.addError("Email masih kosong")
+        ? _textStreamController.sink.addError("Email masih kosong")
         : (isEmailCorrect)
-            ? _textController.sink.add(teks)
-            : _textController.sink.addError("Koreksi email anda");
+            ? _textStreamController.sink.add(teks)
+            : _textStreamController.sink.addError("Koreksi email anda");
   }
 
   dispose() {
-    _textController.close();
+    _textStreamController.close();
   }
 }
