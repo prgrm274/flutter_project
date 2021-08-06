@@ -10,8 +10,6 @@ class Email1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var txt;
-
     return Center(
       child: StreamBuilder(
         builder: (context, AsyncSnapshot<String> snapshot) {
@@ -26,13 +24,12 @@ class Email1 extends StatelessWidget {
                   ),
                   child: TextField(
                     onChanged: (String teks) {
-                      txt = teks;
-                      if (txt.contains(r"[A-a]")) {
+                      if (teks.contains(r"[A-a]")) {
                         log("A-a");
-                      } else if (txt.contains(r"[0-9]")) {
+                      } else if (teks.contains(r"[0-9]")) {
                         log("0-9");
                       }
-                      _emailBloc.checkText(txt);
+                      _emailBloc.checkText(teks);
                     },
                     // onChanged: (String teks) => _emailBloc.checkText(teks),///
                     decoration: InputDecoration(
