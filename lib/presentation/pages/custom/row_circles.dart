@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RowCircles extends StatelessWidget {
+  final Color color;
+
+  RowCircles({required this.color});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,10 +17,10 @@ class RowCircles extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _circle('1', context),
-              _circle('2', context),
-              _circle('3', context),
-              _circle('4', context),
+              _circle('1', context, color),
+              _circle('2', context, color),
+              _circle('3', context, color),
+              _circle('4', context, color),
             ],
           ),
         ],
@@ -24,13 +28,13 @@ class RowCircles extends StatelessWidget {
     );
   }
 
-  Widget _circle(teks, context){
+  Widget _circle(teks, context, color){
     return Container(
       width: MediaQuery.of(context).size.width/7,
       margin: const EdgeInsets.all(15.0),
       padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: color,
           border: Border.all(color: Colors.black26),
           shape: BoxShape.circle
       ),
