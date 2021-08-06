@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
-import 'package:project/presentation/pages/screen3/row_aa1239.dart';
+import 'package:project/presentation/pages/screen2/row_aa1239.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
