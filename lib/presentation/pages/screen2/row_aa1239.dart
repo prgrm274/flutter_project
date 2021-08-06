@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/bloc/password_bloc.dart';
 
 class RowAa1239 extends StatelessWidget {
+  final PasswordBloc _passwordBloc = PasswordBloc();
+
   var isCorrect = false;
 
   RowAa1239({required this.isCorrect});
