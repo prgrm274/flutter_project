@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
           title: Text('Screen 1'),
           backgroundColor: Colors.indigo,
         ),
-        body: RowCircles(teks: 'Teksn',),
+        body: RowCircles(),
         // body: Email1(),
       ),
     );
