@@ -8,8 +8,26 @@ class Screen4 extends StatefulWidget {
   _Screen4State createState() => _Screen4State();
 }
 
-class _Screen4State extends State<Screen4> {
+class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
+  late AnimationController _animationController;
   var _selected1;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    )
+      ..forward()
+      ..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +74,35 @@ class _Screen4State extends State<Screen4> {
                           ],
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 40),
+                  child: AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) {
+                      return Container(
+                        decoration: ShapeDecoration(
+                          color: Colors.white.withOpacity(0.5),
+                          shape: CircleBorder(),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0 * _animationController.value),
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: CircleBorder(),
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        color: Colors.blue,
+                        icon: Icon(Icons.calendar_today, size: 24),
+                      ),
                     ),
                   ),
                 ),
