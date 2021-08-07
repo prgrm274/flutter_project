@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/const/strings_constants.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
-import 'package:project/presentation/pages/screen4/screen4.dart';
 
-class Screen3 extends StatefulWidget {
+class Screen4 extends StatefulWidget {
   @override
-  _Screen3State createState() => _Screen3State();
+  _Screen4State createState() => _Screen4State();
 }
 
-class _Screen3State extends State<Screen3> {
-  var _selected1, _selected2, _selected3;
+class _Screen4State extends State<Screen4> {
+  var _selected1;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ class _Screen3State extends State<Screen3> {
                           children: [
                             RowCircle(color: Colors.green, teks: '1'),
                             RowCircle(color: Colors.green, teks: '2'),
-                            RowCircle(color: Colors.white, teks: '3'),
+                            RowCircle(color: Colors.green, teks: '3'),
                             RowCircle(color: Colors.white, teks: '4'),
                           ],
                         ),
@@ -92,8 +91,7 @@ class _Screen3State extends State<Screen3> {
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text('Goal for activation', textAlign: TextAlign.start,
-                                  style: TextStyle(color: Colors.grey[400])),
+                              child: Text('Goal for activation', textAlign: TextAlign.start,),
                             ),
                             DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
@@ -105,7 +103,9 @@ class _Screen3State extends State<Screen3> {
                                 style: TextStyle(color: Colors.white),
                                 iconEnabledColor: Colors.black,
                                 items: <String>[
-                                  'Goal A', 'Goal B', 'Goal C', 'Goal D', 'Goal E',
+                                  'Goal A', 'Goal B',
+                                  'Goal C', 'Goal D',
+                                  'Goal E',
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -140,8 +140,7 @@ class _Screen3State extends State<Screen3> {
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text('Monthly Income', textAlign: TextAlign.start,
-                                  style: TextStyle(color: Colors.grey[400])),
+                              child: Text('Monthly Income', textAlign: TextAlign.start,),
                             ),
                             DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
@@ -149,23 +148,30 @@ class _Screen3State extends State<Screen3> {
                                 disabledHint: Text('disabled'),
                                 focusColor: Colors.white,
                                 icon: Icon(Icons.keyboard_arrow_down),
-                                value: _selected2,
+                                value: _selected1,
                                 style: TextStyle(color: Colors.white),
+                                iconEnabledColor: Colors.black,
                                 items: <String>[
-                                  '3M', '5M', '7M'
+                                  'Goal A', 'Goal B',
+                                  'Goal C', 'Goal D',
+                                  'Goal E',
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(
                                       value,
-                                      style: TextStyle(color: Colors.black),),);
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  );
                                 }).toList(),
                                 hint: Text(
                                   "- Choose Option -",
-                                  style: TextStyle(color: Colors.black, fontSize: 18),),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18),),
                                 onChanged: (String? value) {
                                   setState(() {
-                                    _selected2 = value;
+                                    _selected1 = value;
                                   });
                                 },
                               ),
@@ -183,8 +189,7 @@ class _Screen3State extends State<Screen3> {
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text('Monthly expense', textAlign: TextAlign.start,
-                              style: TextStyle(color: Colors.grey[400])),
+                              child: Text('Monthly expense', textAlign: TextAlign.start,),
                             ),
                             /// For monthly expense I chose to use DropdownButtonFormField
                             DropdownButtonHideUnderline(
@@ -192,23 +197,28 @@ class _Screen3State extends State<Screen3> {
                                 isExpanded: true,
                                 focusColor: Colors.white,
                                 icon: Icon(Icons.keyboard_arrow_down),
-                                value: _selected3,
+                                value: _selected1,
                                 style: TextStyle(color: Colors.white),
                                 items: <String>[
-                                  '1M', '2M', '3M', '>3M',
-                                ].map<DropdownMenuItem<String>>((String value) {
+                                  'Goal A', 'Goal B',
+                                  'Goal C', 'Goal D',
+                                  'Goal E',]
+                                    .map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(
                                         value,
-                                        style: TextStyle(color: Colors.black)));
+                                        style: TextStyle(color: Colors.black, height: 10)),
+                                  );
                                 }).toList(),
                                 hint: Text(
                                   "- Choose Option -",
-                                  style: TextStyle(color: Colors.black, fontSize: 18),),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18),),
                                 onChanged: (String? value) {
                                   setState(() {
-                                    _selected3 = value;
+                                    _selected1 = value;
                                   });
                                 },
                               ),
@@ -232,12 +242,10 @@ class _Screen3State extends State<Screen3> {
                                 // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if (_selected1 != null && _selected2 != null && _selected3 != null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => Screen4()),
-                                      );
-                                    }
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Screen4()),
+                                    );
                                   },
                                   child: Text(next),
                                 ),

@@ -60,7 +60,7 @@ class _Screen2 extends State<Screen2> {
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width-40,
+                  width: MediaQuery.of(context).size.width,//-40,
                   child: ListView(
                     shrinkWrap: true,
                     children: [
