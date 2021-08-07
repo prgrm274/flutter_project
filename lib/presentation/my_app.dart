@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: Screen1(),
-        // body: Screen2(),
+        // body: Screen1(),
+        body: Screen2(),
         // body: RowCircles(),
         // body: Email1(),
       ),

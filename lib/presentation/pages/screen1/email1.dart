@@ -13,7 +13,7 @@ class Email1 extends StatefulWidget {
 class _Email1 extends State<Email1> {
   final EmailBloc _emailBloc = EmailBloc();
 
-  bool _isLowercase = false;
+  TextEditingController _textEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +40,9 @@ class _Email1 extends State<Email1> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: Colors.grey[200],),
                     child: TextField(
+                      controller: _textEmail,
                       onChanged: (String teks) {
                         _emailBloc.checkText(teks);
-                        setState(() {
-                          if (_emailBloc.checkText(teks)) {
-                            _isLowercase = true;
-                          }
-                        });
                         if (teks.contains(r"[A-a]")) {
                           log("A-a");
                         } else if (teks.contains(r"[0-9]")) {
@@ -80,13 +76,16 @@ class _Email1 extends State<Email1> {
                           // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
                           child: ElevatedButton(
                             onPressed: () {
-                              if (!snapshot.hasError) {
+                              if (_textEmail.text.isEmpty) {
+                                log('pressed');
+                              } else if (snapshot.hasError) {
+                                log('pressed');
+                              } else {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => Screen2()),
                                 );
                               }
-                              log('pressed');
                             },
                             child: Text(next),
                           ),
