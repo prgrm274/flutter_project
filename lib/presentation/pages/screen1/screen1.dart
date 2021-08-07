@@ -5,7 +5,11 @@ import 'package:project/const/strings_constants.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
 import 'package:project/presentation/pages/screen1/email1.dart';
 
-class Screen1 extends StatelessWidget {
+class Screen1 extends StatefulWidget {
+  @override
+  _Screen1 createState() => _Screen1();
+}
+class _Screen1 extends State<Screen1> {
 
   bool isCorrect = true;
 
@@ -40,7 +44,6 @@ class Screen1 extends StatelessWidget {
                 ),
               ),
             ),
-            Text(s1WelcomeFuture),
             Email1(),
           ],
         ),
