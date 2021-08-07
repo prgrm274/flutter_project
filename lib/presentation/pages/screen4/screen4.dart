@@ -179,51 +179,45 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                       ),
                       Container(
                         margin: const EdgeInsets.fromLTRB(40, 0, 40, 20),
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Colors.white,),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('Time', textAlign: TextAlign.start,
-                                  style: TextStyle(color: Colors.grey[400])),
-                            ),
-                            DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                focusColor: Colors.white,
-                                icon: Icon(Icons.keyboard_arrow_down),
-                                value: _selected1,
-                                style: TextStyle(color: Colors.white),
-                                iconEnabledColor: Colors.black,
-                                items: <String>[
-                                  'Goal A', 'Goal B',
-                                  'Goal C', 'Goal D',
-                                  'Goal E',
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                                hint: Text(
-                                  "- Choose Time -",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18),),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _selected1 = value;
-                                  });
-                                },
+                        child: GestureDetector(
+                          onTap: ()=> _selectTime(context),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Time', textAlign: TextAlign.start,
+                                    style: TextStyle(color: Colors.grey[400])),
                               ),
-                            )
-                          ],
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RichText(
+                                    textAlign: TextAlign.justify,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: _isTappedTime
+                                                ?
+                                            // _time
+                                            "${selectedTime.hour} : ${selectedTime.minute}"
+                                                :
+                                            "- Choose Time -",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Icon(Icons.keyboard_arrow_down)
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       /// Button Next
@@ -314,9 +308,10 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
         return buildCupertinoDatePicker(context);
     }
   }
-  /// This builds material date picker in Android
+
 
   bool _isTapped = false;
+  /// This builds material date picker in Android
   _buildMaterialDatePicker(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -394,4 +389,36 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
           );
         });
   }
+
+  late String _setTime, _setDate;
+  late String _hour, _minute, _time;
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+  TextEditingController _timeController = TextEditingController();
+
+  /*Future<TimeOfDay?> showTimePicker24Hour(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+    );
+  }*/
+
+  bool _isTappedTime = false;
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour + ' : ' + _minute;
+        _timeController.text = _time;
+
+        _isTappedTime = true;
+      });}
 }
