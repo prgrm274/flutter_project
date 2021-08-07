@@ -14,10 +14,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Screen 1'),
-          backgroundColor: Colors.indigo,
-        ),
         body: Screen1(),
         // body: Screen2(),
         // body: RowCircles(),

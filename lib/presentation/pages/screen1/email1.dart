@@ -17,20 +17,28 @@ class _Email1 extends State<Email1> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
+      height: MediaQuery.of(context).size.height/2,
+      margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
       child: StreamBuilder(
           stream: _emailBloc.textStream,
           builder: (context, AsyncSnapshot<String> snapshot) {
-            return Stack(
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                snapshot.hasError ? Text('error') : Text(s1WelcomeFuture),
-                Positioned(
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,),
+                  /// TextField Email
                   child: Container(
-                    margin: const EdgeInsets.all(40),
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.grey[200],),
                     child: TextField(
                       onChanged: (String teks) {
                         _emailBloc.checkText(teks);
@@ -47,33 +55,44 @@ class _Email1 extends State<Email1> {
                       },
                       // onChanged: (String teks) => _emailBloc.checkText(teks),///
                       decoration: InputDecoration(
+                        icon: Icon(Icons.email),
                         errorText: snapshot.hasError
                             ? snapshot.error.toString()
                             : null,
-                        hintText: 'example a@gmail.com',
+                        hintText: 'Email',
                       ),
                     ),
                   ),
                 ),
-
-                Positioned(
-                  width: MediaQuery.of(context).size.width,
-                  bottom: 0,
-                  child: Container(
-                    height: 50,
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (!snapshot.hasError) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Screen2()),
-                          );
-                        }
-                        log('pressed');
-                      },
-                      child: Text(next),
-                    ),
+                /// Button Next
+                SizedBox(
+                  height: 60,
+                  width: MediaQuery.of(context).size.width-20,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    fit: StackFit.loose,
+                    children: [
+                      Positioned(
+                        width: MediaQuery.of(context).size.width,
+                        bottom: 10,
+                        child: Container(
+                          height: 50,
+                          // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (!snapshot.hasError) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Screen2()),
+                                );
+                              }
+                              log('pressed');
+                            },
+                            child: Text(next),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 )
               ],
