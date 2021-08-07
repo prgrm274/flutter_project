@@ -203,7 +203,7 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                                             text: _isTappedTime
                                                 ?
                                             // _time
-                                            "${selectedTime.hour} : ${selectedTime.minute}"
+                                            "${selectedTime.hour}:${selectedTime.minute}"
                                                 :
                                             "- Choose Time -",
                                             style: TextStyle(
@@ -391,9 +391,7 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
   }
 
   late String _setTime, _setDate;
-  late String _hour, _minute, _time;
   TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
-  TextEditingController _timeController = TextEditingController();
 
   /*Future<TimeOfDay?> showTimePicker24Hour(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
@@ -414,10 +412,6 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
     if (picked != null)
       setState(() {
         selectedTime = picked;
-        _hour = selectedTime.hour.toString();
-        _minute = selectedTime.minute.toString();
-        _time = _hour + ' : ' + _minute;
-        _timeController.text = _time;
 
         _isTappedTime = true;
       });}
