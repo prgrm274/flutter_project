@@ -68,12 +68,12 @@ class _RowAa1239 extends State<RowAa1239>{
                         ? _elemenCheck('Characters') : _elemenText('9+', 'Characters'),
                   ],
                 ),
-                /*ElevatedButton(
+                ElevatedButton(
                   onPressed: () {
                     log('pressed');
                   },
                   child: Text(next),
-                )*/
+                )
               ],
             ),
           );
@@ -101,67 +101,6 @@ class _RowAa1239 extends State<RowAa1239>{
     return (value.length > 9) ? true : false;
   }
 
-  bool validateStructure(String value) {
-    String patternUpperCaseCharacters = r'^(?=.*?[A-Z])';
-    String patternLowerCaseCharacters = r'^(?=.*?[a-z])';
-    String patternNumbers = r'^(?=.*?[0-9])';
-    String patternSpecialCharacters = r'^(?=.*?[!@#\$&*~£])';
-
-    RegExp regEx1 = new RegExp(patternLowerCaseCharacters);
-    RegExp regEx2 = new RegExp(patternUpperCaseCharacters);
-    RegExp regEx3 = new RegExp(patternNumbers);
-    RegExp regEx4 = new RegExp(patternSpecialCharacters);
-    if (regEx1.hasMatch(value) | regEx2.hasMatch(value) | regEx3.hasMatch(value) |
-    regEx4.hasMatch(value)) {
-      return true;
-    }/* else if (regEx2.hasMatch(value)) {
-      return true;
-    } else if (regEx3.hasMatch(value)) {
-      return true;
-    } else if (regEx4.hasMatch(value)) {
-      return true;
-    }*/
-    return false;
-  }
-
-  String validateStructureStr(String value) {
-    String patternUpperCaseCharacters = r'^(?=.*?[A-Z])';
-    String patternLowerCaseCharacters = r'^(?=.*?[a-z])';
-    String patternNumbers = r'^(?=.*?[0-9])';
-    String patternSpecialCharacters = r'^(?=.*?[!@#\$&*~£])';
-
-    RegExp regEx = new RegExp(patternUpperCaseCharacters);
-    if (regEx.hasMatch(value)) {
-      regEx = new RegExp(patternLowerCaseCharacters);
-      if (regEx.hasMatch(value)) {
-        return "More errors";
-      } else {
-        return "You need at least one lowercase letter";
-      }
-    } else {
-      return "You need at least one capital letter";
-    }
-  }
-
-  void _validateInputs() {
-    if (_formKey.currentState!.validate()) {
-      //    If all data are correct then save data to out variables
-      _formKey.currentState!.save();
-    } else {
-      //    If all data are not valid then start auto validation.
-      setState(() {
-        _autoValidate = true;
-      });
-    }
-  }
-
-  String? validateLowercaseStr(String? value){
-    if (RegExp(r'[a-z]').hasMatch(value!)) {
-      _containsLowercase = true;
-      return '';
-    } else return null;
-  }
-
   Widget _elemenCheck(String casename) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -179,29 +118,6 @@ class _RowAa1239 extends State<RowAa1239>{
         _textJenisPassword2(teks),
         _textJenisPassword2(casename),
       ],
-    );
-  }
-
-  Widget _elemenKolom(bool isCorrect, String teks, String casename) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        isCorrect
-            ? Icon(Icons.check)
-            : _textJenisPassword(isCorrect, teks),
-        _textJenisPassword2(casename),
-      ],
-    );
-  }
-
-  Widget _textJenisPassword(bool isCorrect, String teks){
-    return Text(
-      isCorrect ? '' : teks,
-      style: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
     );
   }
 

@@ -27,7 +27,7 @@ class _Screen2 extends State<Screen2> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RowCircles(color: Colors.green,),
+            RowCircle(color: Colors.green, teks: '1',),
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -23,7 +23,29 @@ class _Screen1 extends State<Screen1> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RowCircles(color: Colors.green,),
+            Stack(
+              fit: StackFit.loose,
+              children: [
+                Positioned(
+                    top: 30,
+                    child: Container(
+                      color: Colors.black45,
+                      height: 5,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                      child: Text('2'),
+                    )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RowCircle(color: Colors.white, teks: '1'),
+                    RowCircle(color: Colors.white, teks: '2'),
+                    RowCircle(color: Colors.white, teks: '3'),
+                    RowCircle(color: Colors.white, teks: '44'),
+                  ],
+                ),
+              ],
+            ),
             Container(
               margin: const EdgeInsets.fromLTRB(40, 40, 40, 0),
               child: Text(s1Welcome)
