@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/const/strings_constants.dart';
@@ -28,6 +29,8 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
     _animationController.dispose();
     super.dispose();
   }
+
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +117,7 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                       Container(
                           margin: const EdgeInsets.fromLTRB(40, 0, 40, 10),
                           child: Text(
-                              s3PInfo,
+                              s4Schedule,
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -123,58 +126,55 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                       Container(
                           margin: const EdgeInsets.fromLTRB(40, 0, 40, 20),
                           child: Text(
-                              s3PleaseFill,
+                              s4ChooseDate,
+                              textAlign: TextAlign.justify,
                               style: TextStyle(
                                   color: Colors.white70,
                                   fontWeight: FontWeight.bold))
                       ),
                       Container(
                         margin: const EdgeInsets.fromLTRB(40, 0, 40, 20),
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Colors.white,),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('Goal for activation', textAlign: TextAlign.start,),
-                            ),
-                            DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                disabledHint: Text('disabled'),
-                                focusColor: Colors.white,
-                                icon: Icon(Icons.keyboard_arrow_down),
-                                value: _selected1,
-                                style: TextStyle(color: Colors.white),
-                                iconEnabledColor: Colors.black,
-                                items: <String>[
-                                  'Goal A', 'Goal B',
-                                  'Goal C', 'Goal D',
-                                  'Goal E',
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                                hint: Text(
-                                  "- Choose Option -",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18),),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _selected1 = value;
-                                  });
-                                },
+                        child: GestureDetector(
+                          onTap: ()=> _selectDate(context),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Date', textAlign: TextAlign.start,
+                                    style: TextStyle(color: Colors.grey[400]))
                               ),
-                            ),
-                          ],
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RichText(
+                                    textAlign: TextAlign.justify,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: _isTapped
+                                                ?
+                                            "${_returnDayname(selectedDate.toLocal().weekday)}, "
+                                                "${selectedDate.toLocal().day} "
+                                                "${_returnMonthname(selectedDate.toLocal().month)} "
+                                                "${selectedDate.toLocal().year} "
+                                                :
+                                            "- Choose Date -",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Icon(Icons.keyboard_arrow_down)
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -187,12 +187,12 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text('Monthly Income', textAlign: TextAlign.start,),
+                              child: Text('Time', textAlign: TextAlign.start,
+                                  style: TextStyle(color: Colors.grey[400])),
                             ),
                             DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
                                 isExpanded: true,
-                                disabledHint: Text('disabled'),
                                 focusColor: Colors.white,
                                 icon: Icon(Icons.keyboard_arrow_down),
                                 value: _selected1,
@@ -212,7 +212,7 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                                   );
                                 }).toList(),
                                 hint: Text(
-                                  "- Choose Option -",
+                                  "- Choose Time -",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18),),
@@ -225,53 +225,6 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                             )
                           ],
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(40, 0, 40, 20),
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.white,),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('Monthly expense', textAlign: TextAlign.start,),
-                            ),
-                            /// For monthly expense I chose to use DropdownButtonFormField
-                            DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                focusColor: Colors.white,
-                                icon: Icon(Icons.keyboard_arrow_down),
-                                value: _selected1,
-                                style: TextStyle(color: Colors.white),
-                                items: <String>[
-                                  'Goal A', 'Goal B',
-                                  'Goal C', 'Goal D',
-                                  'Goal E',]
-                                    .map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                        value,
-                                        style: TextStyle(color: Colors.black, height: 10)),
-                                  );
-                                }).toList(),
-                                hint: Text(
-                                  "- Choose Option -",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18),),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _selected1 = value;
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        )
                       ),
                       /// Button Next
                       SizedBox(
@@ -311,5 +264,134 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
       ),
       debugShowCheckedModeBanner: false,
     );
+  }
+
+  String _returnDayname(int value){
+    var dayname;
+    switch(value) {
+      case 0: dayname = "Sunday"; break;
+      case 1: dayname = "Monday"; break;
+      case 2: dayname = "Tuesday"; break;
+      case 3: dayname = "Wednesday"; break;
+      case 4: dayname = "Thursday"; break;
+      case 5: dayname = "Friday"; break;
+      case 6: dayname = "Saturday"; break;
+    }
+    return dayname;
+  }
+
+  String _returnMonthname(int value){
+    var monthname;
+    switch(value) {
+      case 1: monthname = "January"; break;
+      case 2: monthname = "February"; break;
+      case 3: monthname = "March"; break;
+      case 4: monthname = "April"; break;
+      case 5: monthname = "May"; break;
+      case 6: monthname = "June"; break;
+      case 7: monthname = "July"; break;
+      case 8: monthname = "August"; break;
+      case 9: monthname = "September"; break;
+      case 10: monthname = "October"; break;
+      case 11: monthname = "November"; break;
+      case 12: monthname = "December"; break;
+    }
+    return monthname;
+  }
+
+  _selectDate(BuildContext context) async {
+    final ThemeData theme = Theme.of(context);
+    assert(theme.platform != null);
+    switch (theme.platform) {
+      case TargetPlatform.android:
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+        return _buildMaterialDatePicker(context);
+        // return buildMaterialDatePicker(context);
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+        return buildCupertinoDatePicker(context);
+    }
+  }
+  /// This builds material date picker in Android
+
+  bool _isTapped = false;
+  _buildMaterialDatePicker(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+      initialEntryMode: DatePickerEntryMode.calendar,
+      initialDatePickerMode: DatePickerMode.day,
+      helpText: 'Schedule a date',
+      cancelText: 'Cancel',
+      confirmText: 'OK',
+      errorFormatText: 'Invalid date format',
+      errorInvalidText: 'Invalid date format',
+      fieldLabelText: 'Start date',
+      fieldHintText: 'Year/Month/Date',
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.dark(),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+
+        _isTapped = true;///
+      });
+    /*if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });*/
+  }
+
+  // buildMaterialDatePicker(BuildContext context) async {
+  Future<Null> buildMaterialDatePicker(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+      /// change theme
+      /*builder: (context, child) {
+        return Theme(
+          data: ThemeData.light(),
+          child: child,
+        );
+      },*/
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+  /// This builds cupertion date picker in iOS
+  buildCupertinoDatePicker(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext builder) {
+          return Container(
+            height: MediaQuery.of(context).copyWith().size.height / 3,
+            color: Colors.white,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (picked) {
+                if (picked != null && picked != selectedDate)
+                  setState(() {
+                    selectedDate = picked;
+                  });
+              },
+              initialDateTime: selectedDate,
+              minimumYear: 2000,
+              maximumYear: 2025,
+            ),
+          );
+        });
   }
 }
