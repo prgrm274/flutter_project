@@ -14,8 +14,6 @@ class RowAa1239 extends StatefulWidget {
 class _RowAa1239 extends State<RowAa1239>{
   final PasswordBloc _passwordBloc = PasswordBloc();
 
-  // var isCorrect = false;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
   bool _containsLowercase = false;
@@ -47,26 +45,6 @@ class _RowAa1239 extends State<RowAa1239>{
                     decoration: InputDecoration(
                         hintText: '******'
                     ),
-                  ),
-                ),
-                Form(
-                  autovalidate: _autoValidate,
-                  key: _formKey,
-                  child: TextFormField(
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: validateLowercaseStr,
-                    onSaved: (String? val) {
-                      _psw = val;
-                    },
-                    onChanged: (String password){
-                      _passwordBloc.checkText(password);
-                      /*setState(() {
-                        if (snapshot.data.toString().contains(r'[a-z]')) {
-                          _containsLowercase = true;
-                        }
-                      });*/
-                    },
                   ),
                 ),
                 Container(
