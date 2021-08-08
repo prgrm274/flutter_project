@@ -35,14 +35,20 @@ class _RowAa1239 extends State<RowAa1239>{
               children: [
                 Container(
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(color: Colors.white,),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
+                  ),
                   child: TextField(
                     controller: _textPassword,
                     onChanged: (String password) {
                       _passwordBloc.checkText(password);
                     },
-                    decoration: InputDecoration(hintText: '******'),
+                    decoration: InputDecoration(
+                      hintText: '******',
+                      suffixIcon: Icon(Icons.password_rounded),
+                    ),
                   ),
                 ),
                 Container(
@@ -78,7 +84,7 @@ class _RowAa1239 extends State<RowAa1239>{
                                   ?
                               Text('Very Strong', style: TextStyle(color: Colors.lightGreenAccent,))
                                   :
-                              Text('Strong', style: TextStyle(color: Colors.greenAccent,))
+                              Text('Very Weak', style: TextStyle(color: Colors.greenAccent,))
                                   //Text('(Please fill the password field)'))
                               ));
                             },
@@ -112,13 +118,13 @@ class _RowAa1239 extends State<RowAa1239>{
                 /// Button Next
                 SizedBox(
                   height: 60,
-                  width: MediaQuery.of(context).size.width-20,
+                  width: MediaQuery.of(context).size.width-40,///relates to radius ELevatedButton, can make like BeveledRectangleBorder
                   child: Stack(
                     alignment: Alignment.center,
                     fit: StackFit.loose,
                     children: [
                       Positioned(
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width-30,///relates to radius ELevatedButton, can make like BeveledRectangleBorder
                         bottom: 10,
                         child: Container(
                           height: 50,
@@ -137,6 +143,13 @@ class _RowAa1239 extends State<RowAa1239>{
                                 log('error');
                               }
                             },
+                            style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.blue[300],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20), // <-- Radius
+                                ),
+                                textStyle: TextStyle(fontWeight: FontWeight.bold)),
                             child: Text(next),
                           ),
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/const/strings_constants.dart';
 import 'package:project/presentation/pages/custom/row_circles.dart';
@@ -223,24 +224,30 @@ class _Screen4State extends State<Screen4> with TickerProviderStateMixin{
                       /// Button Next
                       SizedBox(
                         height: 60,
-                        width: MediaQuery.of(context).size.width-20,
+                        width: MediaQuery.of(context).size.width-40,
                         child: Stack(
                           alignment: Alignment.center,
                           fit: StackFit.loose,
                           children: [
                             Positioned(
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width-30,
                               bottom: 10,
                               child: Container(
                                 height: 50,
                                 // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => Screen4()),
-                                    );
+                                    if (_isTapped && _isTappedTime) {
+                                      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                                    }
                                   },
+                                  style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      primary: Colors.blue[300],
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20), // <-- Radius
+                                      ),
+                                      textStyle: TextStyle(fontWeight: FontWeight.bold)),
                                   child: Text(next),
                                 ),
                               ),

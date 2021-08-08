@@ -219,13 +219,13 @@ class _Screen3State extends State<Screen3> {
                       /// Button Next
                       SizedBox(
                         height: 60,
-                        width: MediaQuery.of(context).size.width-20,
+                        width: MediaQuery.of(context).size.width-40,
                         child: Stack(
                           alignment: Alignment.center,
                           fit: StackFit.loose,
                           children: [
                             Positioned(
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width-30,
                               bottom: 10,
                               child: Container(
                                 height: 50,
@@ -239,6 +239,13 @@ class _Screen3State extends State<Screen3> {
                                       );
                                     }
                                   },
+                                  style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      primary: Colors.blue[300],
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20), // <-- Radius
+                                      ),
+                                      textStyle: TextStyle(fontWeight: FontWeight.bold)),
                                   child: Text(next),
                                 ),
                               ),
