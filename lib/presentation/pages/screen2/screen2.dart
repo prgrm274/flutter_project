@@ -17,10 +17,11 @@ class _Screen2 extends State<Screen2> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: true,
+          elevation: 0,
+          leading: IconButton(icon:Icon(Icons.arrow_back),
+              onPressed:() => Navigator.pop(context)),
           title: Text('Create Account'),
-          actions: [
-
-          ],
         ),
         backgroundColor: Colors.blue[500],
         body: Stack(

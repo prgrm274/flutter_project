@@ -15,7 +15,7 @@ class RowCircle extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             color: color,
-            border: Border.all(color: Colors.black26),
+            border: Border.all(color: Colors.black, width: 2),
             shape: BoxShape.circle
         ),
         child: Text(teks, textAlign: TextAlign.center,),

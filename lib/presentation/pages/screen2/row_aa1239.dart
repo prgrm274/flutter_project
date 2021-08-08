@@ -239,4 +239,10 @@ class _RowAa1239 extends State<RowAa1239>{
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordBloc.dispose();
+  }
 }

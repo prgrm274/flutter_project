@@ -34,6 +34,7 @@ class _Email1 extends State<Email1> {
                     color: Colors.white,),
                   /// TextField Email
                   child: Container(
+                    width: MediaQuery.of(context).size.width-80,
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
@@ -61,37 +62,24 @@ class _Email1 extends State<Email1> {
                   ),
                 ),
                 /// Button Next
-                SizedBox(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width-20,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    fit: StackFit.loose,
-                    children: [
-                      Positioned(
-                        width: MediaQuery.of(context).size.width,
-                        bottom: 10,
-                        child: Container(
-                          height: 50,
-                          // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_textEmail.text.isEmpty) {
-                                log('pressed');
-                              } else if (snapshot.hasError) {
-                                log('pressed');
-                              } else {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Screen2()),
-                                );
-                              }
-                            },
-                            child: Text(next),
-                          ),
-                        ),
-                      )
-                    ],
+                Container(
+                  width: MediaQuery.of(context).size.width-40,
+                  height: 50,
+                  // padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_textEmail.text.isEmpty) {
+                        log('pressed');
+                      } else if (snapshot.hasError) {
+                        log('pressed');
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Screen2()),
+                        );
+                      }
+                    },
+                    child: Text(next),
                   ),
                 )
               ],
@@ -99,5 +87,11 @@ class _Email1 extends State<Email1> {
           }
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailBloc.dispose();
   }
 }

@@ -13,9 +13,6 @@ class Screen1 extends StatefulWidget {
 }
 
 class _Screen1 extends State<Screen1> {
-
-  bool isCorrect = true;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,6 +26,7 @@ class _Screen1 extends State<Screen1> {
               clipper: MyClipper(),
               child: Container(
                 color: Colors.blue[600],
+                width: MediaQuery.of(context).size.width,
                 height: 200,/// height of container in clippath
               ),
             ),
@@ -43,7 +41,7 @@ class _Screen1 extends State<Screen1> {
                       fit: StackFit.loose,
                       children: [
                         Positioned(
-                            top: 30,
+                            top: 32,
                             width: MediaQuery.of(context).size.width-40,
                             child: Container(
                               color: Colors.black45,
@@ -65,8 +63,13 @@ class _Screen1 extends State<Screen1> {
                     ),
                   ),
                 ),
+              ],
+            ),
+            Column(
+              children: [
                 Container(
-                  width: MediaQuery.of(context).size.width-40,
+                  margin: const EdgeInsets.only(top: 120),
+                  width: MediaQuery.of(context).size.width,
                   child: ListView(
                     shrinkWrap: true,
                     children: [
@@ -107,18 +110,14 @@ class _Screen1 extends State<Screen1> {
                     ],
                   ),
                 ),
-                Email1(),
               ],
             ),
-            ClipPath(
-              clipper: MyLineClipper(),
-              child: Container(
-                color: Colors.black,
-                height: 200,/// height of container in clippath
-              ),
+            Positioned(
+              bottom: 10,
+              child: Email1(),
             ),
           ],
-        ),
+        )
       ),
     );
   }
